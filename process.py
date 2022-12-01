@@ -7,20 +7,23 @@ from datetime import datetime
 import requests
 from datetime import datetime
 
+
+
 def collect(year ='20'+ datetime.today().strftime('%y'),day = datetime.today().strftime('%d') ):
+    #Collects AOC input for me, Eric if you're reading this - Sorry!
     year = str(year)
     day = str(day)
     if day[0]=='0':
         day = day[1]
     url = f'https://adventofcode.com/{year}/day/{day}/input'
-    headers = {'Email': 'edaviesmathematics@gmail.com'}
+    headers = {'Email': 'edaviesmathematics@gmail.com','git' :'https://github.com/EDaviesmathematics/AOC-things/edit/main/process.py'}
     #dump resulting text to file
     try:
-        f = open('AOC_'+str(year)+'_'+str(day)+'_input.txt','x')
-        cookies = {'_gid': 'GA1.2.1280571140.1669631452',
-                   'session': '53616c7465645f5f7870bc43f283b02729f307a5ba4bdf96f51d71531dbcbdb1fe0b597f2c635fb3315f7ab4ca4d8550463ca7698ac89a5831202000c3a9ce71',
-                   '_ga': 'GA1.2.537718402.1653902531'}
-        data = requests.get(url, cookies=cookies)
+        f = open('AOC_'+str(year)+'_'+str(day)+'_input.txt','x') #Fails if file already downloaded
+        cookies = {'_gid': '',
+                   'session': '',
+                   '_ga': ''}
+        data = requests.get(url, cookies=cookies, header = header)
         f.write(data.text)
         f.close()
     except:
